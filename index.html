@@ -1,261 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zeeshan Haza | Portfolio</title>
-<style>
-  :root {
-    --bg: #0f172a;
-    --bg-alt: #111c33;
-    --card: #16213e;
-    --text: #e6e9f0;
-    --muted: #9aa4b2;
-    --accent: #38bdf8;
-    --accent-2: #818cf8;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    scroll-behavior: smooth;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
-
-  header {
-    position: sticky; top: 0; z-index: 10;
-    background: rgba(15,23,42,0.85);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  header .container {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-top: 16px; padding-bottom: 16px;
-  }
-  .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 0.5px; }
-  nav ul { list-style: none; display: flex; gap: 28px; }
-  nav a { color: var(--muted); font-size: 0.95rem; }
-  nav a:hover { color: var(--text); }
-
-  .hero {
-    padding: 110px 0 90px;
-    text-align: center;
-    background: radial-gradient(circle at 50% 0%, rgba(56,189,248,0.15), transparent 60%);
-  }
-  .hero .avatar {
-    width: 130px; height: 130px; border-radius: 50%;
-    margin: 0 auto 28px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2.5rem; font-weight: 700; color: #0f172a;
-  }
-  .hero h1 { font-size: 2.6rem; margin-bottom: 10px; }
-  .hero p.role { color: var(--accent); font-size: 1.15rem; margin-bottom: 18px; }
-  .hero p.tagline { color: var(--muted); max-width: 560px; margin: 0 auto 32px; }
-  .btn-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn {
-    padding: 12px 26px; border-radius: 8px; font-weight: 600; font-size: 0.95rem;
-    display: inline-block; transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0f172a; }
-  .btn-secondary { border: 1px solid rgba(255,255,255,0.2); color: var(--text); }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(56,189,248,0.25); }
-
-  section { padding: 80px 0; }
-  section.alt { background: var(--bg-alt); }
-  h2.section-title {
-    font-size: 1.9rem; margin-bottom: 40px; text-align: center;
-  }
-  h2.section-title span { color: var(--accent); }
-
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
-  }
-  .about-grid p { color: var(--muted); margin-bottom: 16px; }
-  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .fact { background: var(--card); padding: 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); }
-  .fact .num { color: var(--accent); font-weight: 700; font-size: 1.4rem; }
-  .fact .label { color: var(--muted); font-size: 0.85rem; }
-
-  .skills-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px;
-  }
-  .skill-card {
-    background: var(--card); padding: 22px; border-radius: 10px; text-align: center;
-    border: 1px solid rgba(255,255,255,0.06);
-  }
-  .skill-card .icon { font-size: 1.8rem; margin-bottom: 10px; }
-  .skill-card h3 { font-size: 1rem; margin-bottom: 6px; }
-  .skill-card p { color: var(--muted); font-size: 0.85rem; }
-
-  .projects-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;
-  }
-  .project-card {
-    background: var(--card); border-radius: 12px; overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.06);
-    transition: transform 0.15s ease;
-  }
-  .project-card:hover { transform: translateY(-4px); }
-  .project-thumb {
-    height: 150px; background: linear-gradient(135deg, var(--accent-2), var(--accent));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2rem; color: rgba(15,23,42,0.5);
-  }
-  .project-body { padding: 20px; }
-  .project-body h3 { margin-bottom: 8px; }
-  .project-body p { color: var(--muted); font-size: 0.9rem; margin-bottom: 14px; }
-  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
-  .tag {
-    font-size: 0.75rem; padding: 4px 10px; border-radius: 20px;
-    background: rgba(56,189,248,0.12); color: var(--accent);
-  }
-
-  .contact-box {
-    max-width: 560px; margin: 0 auto; text-align: center;
-  }
-  .contact-links { display: flex; gap: 20px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
-  .contact-links a {
-    padding: 10px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); color: var(--text);
-  }
-  .contact-links a:hover { border-color: var(--accent); color: var(--accent); }
-
-  footer {
-    text-align: center; padding: 30px 0; color: var(--muted); font-size: 0.85rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-  }
-
-  @media (max-width: 768px) {
-    nav ul { display: none; }
-    .about-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 2rem; }
-  }
-</style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zeeshan Hamza | Full Stack Web Technologist</title>
+<meta name="description" content="Zeeshan Hamza — a Full Stack Web Technologist weaving stories into pixels with a sprinkle of passion and a hunger for learning." />
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
-<header>
-  <div class="container">
-    <div class="logo">Zeeshan Haza</div>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+<header class="site-header">
+  <div class="wrap nav-row">
+    <a class="logo" href="index.html">Zeeshan</a>
+    <button class="nav-toggle" aria-label="Toggle navigation">Menu</button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="prompts.html">AI Prompts</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><button class="theme-toggle" aria-label="Switch to light mode" title="Switch to light mode">☽</button></li>
+    </ul>
   </div>
 </header>
 
-<section class="hero">
-  <div class="container">
-    <div class="avatar">ZH</div>
-    <h1>Zeeshan Haza</h1>
-    <p class="role">Software Developer &amp; Problem Solver</p>
-    <p class="tagline">
-      I build clean, reliable web experiences and turn ideas into working products.
-      Passionate about writing maintainable code and solving real problems.
-    </p>
-    <div class="btn-row">
-      <a href="#projects" class="btn btn-primary">View My Work</a>
-      <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="alt">
-  <div class="container">
-    <h2 class="section-title">About <span>Me</span></h2>
-    <div class="about-grid">
-      <div>
-        <p>
-          Hi, I'm Zeeshan Haza — a developer focused on building thoughtful software
-          that balances functionality with simplicity. I enjoy working across the stack,
-          from crafting intuitive interfaces to designing solid backend logic.
-        </p>
-        <p>
-          Replace this placeholder bio with your own story: where you're from,
-          what drives you, and what kind of work excites you most.
-        </p>
-      </div>
-      <div class="facts">
-        <div class="fact"><div class="num">3+</div><div class="label">Years Experience</div></div>
-        <div class="fact"><div class="num">20+</div><div class="label">Projects Completed</div></div>
-        <div class="fact"><div class="num">10+</div><div class="label">Happy Clients</div></div>
-        <div class="fact"><div class="num">5+</div><div class="label">Technologies</div></div>
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <h1>Hey! I'm Zeeshan Hamza</h1>
+      <p class="lede">I am a Full Stack Web Technologist weaving stories into pixels with a sprinkle of passion and a hunger for learning.</p>
+      <p class="role-line">Currently, I'm working as a <strong>Lead Software Engineer</strong>, where I focus on shaping the architecture of both code and databases. I design and implement robust, scalable solutions while ensuring best practices in development. My role involves overseeing the entire development lifecycle, optimizing code performance, and ensuring smooth system integration.</p>
+      <div class="hero-links">
+        <a class="underline" href="projects.html">discover my work</a>
+        <a class="underline" href="about.html">who am i</a>
       </div>
     </div>
-  </div>
-</section>
 
-<section id="skills">
-  <div class="container">
-    <h2 class="section-title">My <span>Skills</span></h2>
-    <div class="skills-grid">
-      <div class="skill-card"><div class="icon">💻</div><h3>Web Development</h3><p>HTML, CSS, JavaScript</p></div>
-      <div class="skill-card"><div class="icon">⚙️</div><h3>Backend</h3><p>Node.js, APIs, Databases</p></div>
-      <div class="skill-card"><div class="icon">🎨</div><h3>UI / UX</h3><p>Responsive Design</p></div>
-      <div class="skill-card"><div class="icon">🧩</div><h3>Problem Solving</h3><p>Algorithms &amp; Logic</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="projects" class="alt">
-  <div class="container">
-    <h2 class="section-title">Featured <span>Projects</span></h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-thumb">📁</div>
-        <div class="project-body">
-          <h3>Project One</h3>
-          <p>A short description of this project goes here. Replace with real details.</p>
-          <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
+    <div class="circle-wrapper">
+      <div class="big-circle">
+        <div class="orbit-icon"><svg viewBox="0 0 448 512"><path d="M356.9 64.3H280l-56 88.6-48-88.6H0L224 448 448 64.3h-91.1zm-301.2 32h53.8L224 294.5 338.4 96.3h53.8L224 384.5 55.7 96.3z"/></svg></div>
+        <div class="orbit-icon"><svg viewBox="0 0 512 512"><path d="M504.4 115.8c-.1-.4-.2-.8-.3-1.2a8 8 0 0 0-4-4.9L404.4 55.6a8 8 0 0 0-8 0L300.1 111a8 8 0 0 0-4 7v104.5l-80.2 46.2V63.4a8 8 0 0 0-4-7L115.6 1.1a8 8 0 0 0-8 0L11.3 56.5a8 8 0 0 0-4 7v329.7a8 8 0 0 0 4 7l192.5 110.8a8 8 0 0 0 8 0L404.4 400.1a8 8 0 0 0 4-7V287.9l92.2-53.1a8 8 0 0 0 4-7z"/></svg></div>
+        <div class="orbit-icon"><svg viewBox="0 0 448 512"><path d="M0 32v448h448V32H0zm243.8 349.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7z"/></svg></div>
+        <div class="orbit-icon"><svg viewBox="0 0 576 512"><path d="M333.5 201.4c0-22.1-15.6-34.3-43-34.3h-50.4v71.2h42.5c22.8 0 40.9-13.2 40.9-36.9z"/></svg></div>
+        <div class="inner-circle">
+          <div class="orbit-icon" style="left:50%; top:0; transform:translate(-50%,-50%)"><svg viewBox="0 0 512 512"><path d="M504.4 115.8c-.1-.4-.2-.8-.3-1.2a8 8 0 0 0-4-4.9L404.4 55.6a8 8 0 0 0-8 0L300.1 111a8 8 0 0 0-4 7v104.5l-80.2 46.2V63.4a8 8 0 0 0-4-7L115.6 1.1a8 8 0 0 0-8 0L11.3 56.5a8 8 0 0 0-4 7v329.7a8 8 0 0 0 4 7l192.5 110.8a8 8 0 0 0 8 0L404.4 400.1a8 8 0 0 0 4-7V287.9l92.2-53.1a8 8 0 0 0 4-7z"/></svg></div>
         </div>
-      </div>
-      <div class="project-card">
-        <div class="project-thumb">📁</div>
-        <div class="project-body">
-          <h3>Project Two</h3>
-          <p>A short description of this project goes here. Replace with real details.</p>
-          <div class="tag-row"><span class="tag">React</span><span class="tag">API</span></div>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-thumb">📁</div>
-        <div class="project-body">
-          <h3>Project Three</h3>
-          <p>A short description of this project goes here. Replace with real details.</p>
-          <div class="tag-row"><span class="tag">Node.js</span><span class="tag">MongoDB</span></div>
-        </div>
+        <div class="center-avatar">ZH</div>
       </div>
     </div>
   </div>
-</section>
+</main>
 
-<section id="contact">
-  <div class="container contact-box">
-    <h2 class="section-title">Get In <span>Touch</span></h2>
-    <p style="color: var(--muted);">
-      Have a project in mind or just want to say hello? Feel free to reach out.
-    </p>
-    <div class="contact-links">
-      <a href="mailto:zeeshan.haza@example.com">Email</a>
-      <a href="https://github.com/i-zee13" target="_blank" rel="noopener">GitHub</a>
-      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="#" target="_blank" rel="noopener">Twitter</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    &copy; 2026 Zeeshan Haza. All rights reserved.
-  </div>
+<footer class="site-footer">
+  <div class="wrap">© 2026</div>
 </footer>
-
+<script src="js/script.js"></script>
 </body>
 </html>
