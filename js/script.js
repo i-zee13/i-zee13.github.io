@@ -1,11 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Mobile nav toggle
-  const navToggle = document.querySelector(".nav-toggle");
-  const navLinks = document.querySelector(".nav-links");
-  if (navToggle && navLinks) {
-    navToggle.addEventListener("click", () => navLinks.classList.toggle("open"));
-  }
-
   // Theme toggle (persisted)
   const themeToggle = document.querySelector(".theme-toggle");
   const root = document.documentElement;
@@ -16,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       root.removeAttribute("data-theme");
     }
     if (themeToggle) {
-      themeToggle.textContent = theme === "light" ? "☀" : "☽";
+      themeToggle.textContent = theme === "light" ? "☽" : "☀";
       themeToggle.setAttribute("title", theme === "light" ? "Switch to dark mode" : "Switch to light mode");
     }
   };
