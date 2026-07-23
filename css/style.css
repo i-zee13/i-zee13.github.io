@@ -246,15 +246,20 @@ p { color: var(--light-gray); line-height: 1.85; }
   position: relative;
 }
 
-.big-circle {
-  animation: rotate-forward 40s linear infinite;
-  border: 3px solid var(--dark-liver);
-  border-radius: 50%;
+.orbit-scene {
+  position: relative;
   height: 100%;
   width: 100%;
   max-width: 340px;
   max-height: 340px;
-  position: relative;
+}
+
+.big-circle {
+  animation: rotate-forward 40s linear infinite;
+  border: 3px solid var(--dark-liver);
+  border-radius: 50%;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -576,6 +581,84 @@ p { color: var(--light-gray); line-height: 1.85; }
 
 /* ---------- Contact ---------- */
 .contact-grid { display: grid; grid-template-columns: 340px 1fr; gap: 40px; align-items: center; }
+
+.orb-visual { position: relative; width: 300px; height: 300px; margin: 0 auto; }
+
+.sun { display: none; }
+
+[data-theme="light"] .blackhole { display: none; }
+[data-theme="light"] .sun {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+}
+
+.sun-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,196,102,.55) 0%, rgba(255,196,102,.28) 40%, transparent 72%);
+  filter: blur(2px);
+  animation: pulse-sun-glow 4s ease-in-out infinite;
+}
+
+.sun-core {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  z-index: 5;
+  background: radial-gradient(circle at 35% 30%, #fff6d8 0%, #ffcf5c 35%, #ffab2e 70%, #ff8a00 100%);
+  box-shadow: 0 0 40px rgba(255,170,40,.8), 0 0 80px rgba(255,170,40,.5);
+  animation: pulse-sun-core 4s ease-in-out infinite;
+}
+
+.sun-ray {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(to top, transparent, rgba(255,180,60,.75));
+  transform-origin: center 150px;
+}
+
+.sun-ray-1 { height: 150px; transform: translate(-50%, -150px) rotate(0deg); animation: rotate-cw 20s linear infinite; }
+.sun-ray-2 { height: 130px; width: 1.5px; transform: translate(-50%, -150px) rotate(120deg); animation: rotate-ccw 26s linear infinite; }
+.sun-ray-3 { height: 140px; transform: translate(-50%, -150px) rotate(240deg); animation: rotate-cw 15s linear infinite; }
+
+.sun-flare {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 5px; height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: #ffcf5c;
+  box-shadow: 0 0 8px rgba(255,180,60,.9), 0 0 16px rgba(255,180,60,.5);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.sun-flare-1 { animation-name: orbit-flare-0; animation-duration: 9s; }
+.sun-flare-2 { animation-name: orbit-flare-90; animation-duration: 13s; }
+.sun-flare-3 { animation-name: orbit-flare-180; animation-duration: 11s; }
+.sun-flare-4 { animation-name: orbit-flare-270; animation-duration: 15s; }
+
+@keyframes pulse-sun-glow {
+  0%, 100% { opacity: .75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes pulse-sun-core {
+  0%, 100% { box-shadow: 0 0 40px rgba(255,170,40,.8), 0 0 80px rgba(255,170,40,.5); transform: scale(1); }
+  50% { box-shadow: 0 0 55px rgba(255,170,40,.95), 0 0 100px rgba(255,170,40,.65); transform: scale(1.05); }
+}
+
+@keyframes orbit-flare-0   { from { transform: rotate(0deg)   translateX(95px); } to { transform: rotate(360deg) translateX(95px); } }
+@keyframes orbit-flare-90  { from { transform: rotate(90deg)  translateX(95px); } to { transform: rotate(450deg) translateX(95px); } }
+@keyframes orbit-flare-180 { from { transform: rotate(180deg) translateX(95px); } to { transform: rotate(540deg) translateX(95px); } }
+@keyframes orbit-flare-270 { from { transform: rotate(270deg) translateX(95px); } to { transform: rotate(630deg) translateX(95px); } }
 
 .blackhole {
   align-items: center;
