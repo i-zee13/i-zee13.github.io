@@ -61,4 +61,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (searchInput) searchInput.addEventListener("input", filterPrompts);
   if (categoryFilter) categoryFilter.addEventListener("change", filterPrompts);
+
+  // Generic tab switcher: used by Hobbies (data-hobby) and Tech Arsenal (data-tab)
+  const wireTabs = (btnAttr, panelAttr) => {
+    const buttons = document.querySelectorAll(`[${btnAttr}]`);
+    if (!buttons.length) return;
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const key = btn.getAttribute(btnAttr);
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.querySelectorAll(`[${panelAttr}]`).forEach((panel) => {
+          panel.style.display = panel.getAttribute(panelAttr) === key ? "" : "none";
+        });
+      });
+    });
+  };
+
+  wireTabs("data-hobby", "data-hobby-panel");
+  wireTabs("data-tab", "data-tab-panel");
+
+  // Skills page: click a tech tag to reveal a detail card
+  const tagButtons = document.querySelectorAll(".tag[data-skill]");
+  const skillDetail = document.querySelector(".skill-detail");
+  const skillBack = document.querySelector(".skill-back");
+  const tagCloud = document.querySelector(".tag-cloud");
+
+  if (tagButtons.length && skillDetail) {
+    tagButtons.forEach((tag) => {
+      tag.addEventListener("click", () => {
+        skillDetail.querySelector(".skill-detail-title").textContent = tag.getAttribute("data-skill");
+        skillDetail.querySelector(".skill-detail-desc").textContent = tag.getAttribute("data-desc");
+        tagCloud.style.display = "none";
+        skillDetail.style.display = "flex";
+      });
+    });
+  }
+
+  if (skillBack) {
+    skillBack.addEventListener("click", () => {
+      skillDetail.style.display = "none";
+      tagCloud.style.display = "";
+    });
+  }
 });

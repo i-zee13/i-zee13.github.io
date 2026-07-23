@@ -469,6 +469,118 @@ p { color: var(--light-gray); line-height: 1.85; }
   flex-shrink: 0;
 }
 
+.tag[data-skill] { cursor: pointer; }
+
+.skill-detail {
+  max-width: 420px;
+  margin: 0 auto 28px;
+  padding: 40px 36px;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.skill-detail-title { margin: 0; font-size: 1.3rem; }
+.skill-detail-desc { margin: 0; }
+
+.skill-back {
+  margin-top: 6px;
+  padding: .5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--dark-liver);
+  background: transparent;
+  color: var(--light-gray);
+  font-family: inherit;
+  font-size: .85rem;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.skill-back:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- Tech Arsenal ---------- */
+.tab-count {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(var(--light-gray-rgb), .18);
+  font-size: .72rem;
+}
+
+.filter-btn.active .tab-count { background: rgba(0,0,0,.2); }
+
+.arsenal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.arsenal-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 12px;
+  border: 1px solid var(--dark-liver);
+  border-radius: 12px;
+  background: rgba(var(--chinese-black-rgb), .4);
+  transition: all .25s ease;
+}
+
+.arsenal-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(var(--accent-rgb), .15);
+}
+
+.arsenal-icon { width: 40px; height: 40px; }
+
+.icon-fallback {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--black-olive);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: .7rem;
+  color: var(--light-silver);
+  text-align: center;
+}
+
+.arsenal-name { font-size: .85rem; color: var(--light-gray); }
+
+/* ---------- Projects Archive ---------- */
+.archive-list { margin-top: 32px; }
+
+.archive-row {
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(var(--dark-liver-rgb), .3);
+}
+
+.archive-year {
+  flex-shrink: 0;
+  width: 48px;
+  font-weight: 700;
+  color: var(--light-silver);
+  font-size: .95rem;
+}
+
+.archive-info { flex: 1; }
+.archive-info h3 { margin: 0 0 6px; font-size: 1.05rem; }
+.archive-info p { margin: 0; font-size: .9rem; }
+
+@media (max-width: 560px) {
+  .archive-row { flex-direction: column; gap: 8px; }
+}
+
 /* ---------- Projects ---------- */
 .projects-header { text-align: center; margin-bottom: 44px; }
 .projects-intro { max-width: 700px; margin: 12px auto 0; }
@@ -499,6 +611,34 @@ p { color: var(--light-gray); line-height: 1.85; }
 
 .project-footer { border-top: 1px solid rgba(var(--dark-liver-rgb), .3); margin-top: auto; padding-top: 1rem; }
 .project-link { display: inline-flex; align-items: center; gap: .4rem; font-size: .95rem; }
+
+/* ---------- Hobbies / shared filter pills ---------- */
+.filter-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 24px 0; }
+
+.filter-btn {
+  padding: .55rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--dark-liver);
+  background: transparent;
+  color: var(--light-gray);
+  font-family: inherit;
+  font-size: .88rem;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+.filter-btn.active { background: var(--accent); border-color: var(--accent); color: #0b0b0b; }
+
+.hobby-panel {
+  max-width: 480px;
+  margin: 24px auto 0;
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.hobby-icon { width: 64px; height: 64px; color: var(--light-gray); margin-bottom: 20px; }
+.hobby-panel p { margin: 0; }
 
 /* ---------- Prompts ---------- */
 .prompts-intro { max-width: 700px; margin: 12px auto 0; text-align: center; }
@@ -752,6 +892,21 @@ p { color: var(--light-gray); line-height: 1.85; }
 @media (max-width: 860px) {
   .hero, .about-grid, .contact-grid { grid-template-columns: 1fr; }
   .animated-visual, .blackhole-wrap { margin: 0 auto; }
+
+  /* Tall stacked content (gear cluster + copy, hero + orbit, etc.) can exceed
+     the viewport height; centering it then makes it overflow upward into
+     the header. Top-align instead once we're stacked to a single column. */
+  .site-main {
+    justify-content: flex-start;
+    padding-top: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .animated-visual { width: 260px; height: 260px; min-height: 260px; }
+  .circle-wrapper { height: 260px; }
+  .orb-visual, .blackhole { width: 230px; height: 230px; }
+  .blackhole-center { width: 62px; height: 62px; }
 }
 
 @media (max-width: 1199px) {

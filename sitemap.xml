@@ -2,8 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://zeeshanhamza.com/</loc></url>
   <url><loc>https://zeeshanhamza.com/about.html</loc></url>
+  <url><loc>https://zeeshanhamza.com/biography.html</loc></url>
+  <url><loc>https://zeeshanhamza.com/hobbies.html</loc></url>
   <url><loc>https://zeeshanhamza.com/skills.html</loc></url>
+  <url><loc>https://zeeshanhamza.com/tech-arsenal.html</loc></url>
   <url><loc>https://zeeshanhamza.com/projects.html</loc></url>
+  <url><loc>https://zeeshanhamza.com/projects-archive.html</loc></url>
   <url><loc>https://zeeshanhamza.com/prompts.html</loc></url>
   <url><loc>https://zeeshanhamza.com/contact.html</loc></url>
 </urlset>
